@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { GameBoard } from './components/GameBoard';
+import { Header } from './components/Header';
+import { NumberButtons } from './components/NumberButtons';
+import { useState } from 'react';
+import { gameBoardCreator } from './utils/utils'
 
 function App() {
+
+  const [gameBoard, setGameBoard] = useState(gameBoardCreator(9,9))
+  const [selected, setSelected] = useState()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+      <GameBoard gameBoard={gameBoard} setSelected={setSelected}/>
+      <NumberButtons setGameBoard={setGameBoard} selected={selected}/>
     </div>
   );
 }
